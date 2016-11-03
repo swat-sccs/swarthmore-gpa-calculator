@@ -1,0 +1,500 @@
+ 1049  cd test
+ 1050  lal
+ 1051  heron
+ 1052  swat
+ 1053  ls
+ 1054  cd ..
+ 1055  rm -rf test
+ 1056  ls
+ 1057  lal
+ 1058  git pull
+ 1059  lal
+ 1060  git status
+ 1061  cd
+ 1062  ls
+ 1063  python
+ 1064  swat
+ 1065  scala -v
+ 1066  brew update
+ 1067  brew install scala
+ 1068  brew install scala; brew install sbt
+ 1069  echo '-J-XX:+CMSClassUnloadingEnabled' >> /usr/local/etc/sbtopts
+ 1070  echo '-J-Xmx2G' >> /usr/local/etc/sbtopts
+ 1071  cd ..
+ 1072  vim test.sc
+ 1073  vim test.scala
+ 1074  scalac test.scala 
+ 1075  scala HelloWorld
+ 1076  scala test.scala
+ 1077  ls
+ 1078  scala test.scala
+ 1079  ls
+ 1080  rm HelloWorld*
+ 1081  rm test.scala
+ 1082  scala -v
+ 1083  scala --version
+ 1084  scala
+ 1085  ls
+ 1086  rm -rf SwatCoRe/
+ 1087  git clone https://github.com/oliver-newman/swatcore-dev.git
+ 1088  ls
+ 1089  cd swatcore-dev/
+ 1090  ruby -v
+ 1091  ls
+ 1092  vim Gemfile
+ 1093  rails s
+ 1094  vim Gemfile
+ 1095  vim Gemfile
+ 1096  rails s
+ 1097  bundle install
+ 1098  gem install pg -v '0.18.1
+ 1099  gem install pg -v '0.18.1'
+ 1100  vim /Users/Oliver/.rvm/gems/ruby-2.3.0/extensions/x86_64-darwin-15/2.3.0/pg-0.18.1/mkmf.log
+ 1101  brew install postgresql
+ 1102  gem install pg -v '0.18.1'
+ 1103  bundle install
+ 1104  rails s
+ 1105  ls
+ 1106  vim Gemfile
+ 1107  git checkout -- Gemfile
+ 1108  git status
+ 1109  ls ~/.rvm
+ 1110  ls ~/.rvm/rubies
+ 1111  ls
+ 1112  vim Gemfile
+ 1113  rvm install 2.2.1
+ 1114  ls ~/.rvm/rubies
+ 1115  ls
+ 1116  rails s
+ 1117  gem env
+ 1118  bundle install 
+ 1119  gem install bundler
+ 1120  bundle install 
+ 1121  gem install eventmachine -v '1.0.7'
+ 1122  vim eventmachine -v '1.0.7'
+ 1123  vim /Users/Oliver/.rvm/gems/ruby-2.2.1/extensions/x86_64-darwin-14/2.2.0-static/eventmachine-1.0.7/gem_make.out
+ 1124  gem install eventmachine -- --with-cppflags=-I/usr/local/opt/openssl/include
+ 1125  brew install openssl
+ 1126  gem install eventmachine -- --with-cppflags=-I/usr/local/opt/openssl/include
+ 1127  gem install eventmachine -v '1.0.7'
+ 1128  bundle install
+ 1129  gem install eventmachine -v '1.0.7'
+ 1130  bundle config build.eventmachine --with-cppflags=-I$(brew --prefix openssl)/include
+ 1131  bundle install
+ 1132  gem install puma -v '2.11.2'
+ 1133  brew link openssl --force
+ 1134  pkg-config --variable=includedir openssl
+ 1135  gem install puma -v '2.11.2'
+ 1136  cd /usr/local/include
+ 1137  cd
+ 1138  cd workspace/swatcore-dev/
+ 1139  brew install openssl
+ 1140  brew link --force openssl
+ 1141  brew update
+ 1142  ln -s /usr/local/opt/openssl/lib/libcrypto.1.0.0.dylib /usr/local/lib/
+ 1143  ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
+ 1144  brew link --force openssl
+ 1145  ln -s /usr/local/Cellar/openssl/1.0.2j/bin/openssl openssl
+ 1146  brew link --force openssl
+ 1147  python enumerate.py 
+ 1148  python enumerate.py 
+ 1149  python enumerate.py 
+ 1150  python enumerate.py 
+ 1151  python decorators.py
+ 1152  python decorators.py
+ 1153  python decorator_test.py
+ 1154  :q
+ 1155  :q
+ 1156  python decorator_test.py
+ 1157  python time_decorator.py 
+ 1158  python time_decorator.py 
+ 1159  python time_decorator.py 
+ 1160  cd ~/dotfiles
+ 1161  ls
+ 1162  git pull
+ 1163  git status
+ 1164  git diff bsahrc
+ 1165  git diff bashrc
+ 1166  git checkout -- bashrc
+ 1167  git pull
+ 1168  vim bashrc
+ 1169  vim bashrc
+ 1170  git status
+ 1171  rails s
+ 1172  ps
+ 1173  ps
+ 1174  rails s
+ 1175  ls
+ 1176  ls tmp/pids/server.pid 
+ 1177  vim tmp/pids/server.pid 
+ 1178  vim ~/.bashrc
+ 1179  vim ~/.bash_profile 
+ 1180  vim ~/.bash_profile 
+ 1181  vim tmp/pids/server.pid 
+ 1182  vim tmp/pids/server.pid 
+ 1183  kill -9 61259
+ 1184  rails g controller Foo bar baz
+ 1185  ls
+ 1186  ls app/controllers/
+ 1187  rails destroy controller Foo bar baz
+ 1188  rails g controller Foo bar baz
+ 1189  rails destroy controller Foo bar baz
+ 1190  git status
+ 1191  ls
+ 1192  ps
+ 1193  tmux ls
+ 1194  gwaihir
+ 1195  git status
+ 1196  ls
+ 1197  rm openssl
+ 1198  git status
+ 1199  vim Gemfile
+ 1200  bundle install --without production
+ 1201  rake db:migrate
+ 1202  ls
+ 1203  ls db
+ 1204  cd db
+ 1205  ls
+ 1206  vim webscraper.py 
+ 1207  python webscraper.py 
+ 1208  python2 webscraper.py 
+ 1209  gwaihir
+ 1210  gwaihir
+ 1211  cd ../swatcore-dev/
+ 1212  ls
+ 1213  bundle install
+ 1214  brew doctor
+ 1215  brew prune
+ 1216  gem install puma -v '2.11.2' -- --with-opt-include="/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/"
+ 1217  gem install puma -- --with-opt-include=/usr/local/opt/openssl/include
+ 1218  bundle install
+ 1219  gem install puma -v '2.11.1'
+ 1220  gem install puma -v '2.11.2'
+ 1221  gem install puma -v 2.11.2
+ 1222  gem install puma -v 2.11.2 -- --with-opt-dir=/usr/local/opt/openssl
+ 1223  brew installbu
+ 1224  bundle install
+ 1225  rails s
+ 1226  rails db:migrate
+ 1227  rails db:migrate
+ 1228  bin/rails db:migrate
+ 1229  rake db:migrate
+ 1230  rake db:migrate
+ 1231  vim Gemfile
+ 1232  bundle install --without production
+ 1233  bundle update
+ 1234  ls
+ 1235  rails s
+ 1236  ls
+ 1237  vim ~/.bashrc
+ 1238  \ls
+ 1239  lal
+ 1240  vim ~/.bashrc
+ 1241  ~/.bashrc
+ 1242  . ~/.bashrc
+ 1243  ls
+ 1244  git status
+ 1245  ls
+ 1246  rvm rvmrc warning ignore allGemfiles
+ 1247  echo $PATH
+ 1248  man ls
+ 1249  rails s
+ 1250  bundle install
+ 1251  ls .rvm
+ 1252  ls ~/.rvm
+ 1253  ls ~/.rvm/rubies
+ 1254  ruby -v
+ 1255  bundle config git.allow_insecure true
+ 1256  bundle install
+ 1257  which gem
+ 1258  gem env
+ 1259  gem install bundler
+ 1260  rbenv rehash
+ 1261  bundle install
+ 1262  bundle -v
+ 1263  vim Gemfile
+ 1264  rvm list
+ 1265  rvm reset
+ 1266  rvm list
+ 1267  bundle install
+ 1268  ruby -v
+ 1269  rvm -v
+ 1270  rvm get stable --auto-dotfiles
+ 1271  vim .bash_profile
+ 1272  vim ~/.bash_profile 
+ 1273  . ~/.bash_profile
+ 1274  rvm list
+ 1275  rvm reset
+ 1276  rvm get stable --auto-dotfiles
+ 1277  rvm list
+ 1278  bundle install
+ 1279  gem pristine --all
+ 1280  rails 
+ 1281  rails s
+ 1282  rails s
+ 1283  ls /tmp
+ 1284  ls /tmp/.s.PGSQL.5432
+ 1285  ls /tmp/
+ 1286  lal /tmp/
+ 1287  gem install sqlite3
+ 1288  bundle
+ 1289  rake db:migrate
+ 1290  rake db:setup
+ 1291  rake db:create
+ 1292  python
+ 1293  python graph.py 
+ 1294  vim testGraph.py
+ 1295  ls
+ 1296  ./testGraph
+ 1297  ./testGraph.py
+ 1298  vim testGraph.py 
+ 1299  testGraph.py
+ 1300  vim testGraph.py 
+ 1301  vim testGraph.py 
+ 1302  vim testGraph.py 
+ 1303  d
+ 1304  cd
+ 1305  cd workspace/
+ 1306  ls
+ 1307  cd ../sccs/new-home/
+ 1308  ls
+ 1309  jb
+ 1310  bundle exec jekyll build
+ 1311  bundle install
+ 1312  vim README.md 
+ 1313  cd
+ 1314  cd .vim
+ 1315  ls
+ 1316  cd bundle
+ 1317  ls
+ 1318  rm syntastic/
+ 1319  rm -rf syntastic/
+ 1320  cd ..
+ 1321  ls
+ 1322  cd ..
+ 1323  vim ~/.vimrc
+ 1324  vim ~/.vimrc
+ 1325  cd dotfiles
+ 1326  ls
+ 1327  git status
+ 1328  git add vimrc 
+ 1329  git commit -m "Remove syntastic from vundle"
+ 1330  ls
+ 1331  git push
+ 1332  ls
+ 1333  git pull
+ 1334  git log
+ 1335  vim
+ 1336  cd ../..
+ 1337  cd ..
+ 1338  ls
+ 1339  cd dotfiles
+ 1340  ls
+ 1341  git status
+ 1342  git diff bashrc
+ 1343  lal ~
+ 1344  vim ~/.path
+ 1345  git diff bashrc
+ 1346  vim bashrc
+ 1347  git diff bashrc
+ 1348  git status
+ 1349  s
+ 1350  ls
+ 1351  vim makesymlinks.sh 
+ 1352  git status
+ 1353  ./makesymlinks.sh 
+ 1354  ls
+ 1355  lal
+ 1356  lal ~/.git*
+ 1357  ls
+ 1358  vim gitignore_global
+ 1359  git status
+ 1360  ls vim
+ 1361  rm vim/vim
+ 1362  ls
+ 1363  vim makesymlinks.sh 
+ 1364  ./makesymlinks.sh 
+ 1365  git status
+ 1366  rm vim/vim
+ 1367  ls vi
+ 1368  ls vim
+ 1369  git add makesymlinks.sh gitignore_global 
+ 1370  git add "Add gitignore_global"
+ 1371  git commit -m "Add gitignore_global"
+ 1372  git status
+ 1373  git push
+ 1374  cd ~/.vim
+ 1375  ls
+ 1376  ls bundle
+ 1377  cd ..
+ 1378  ls
+ 1379  vim myports.txt 
+ 1380  cd .vim
+ 1381  ls
+ 1382  cd bundle
+ 1383  ls
+ 1384  cd ..
+ 1385  ls after
+ 1386  cd after
+ 1387  cd syntax
+ 1388  ls
+ 1389  cd html.vim 
+ 1390  vim html.vim 
+ 1391  pwd
+ 1392  vim html.vim 
+ 1393  vim cpp.vim
+ 1394  cp cpp.vim css.vim
+ 1395  cp ~/Downloads/python.vim .
+ 1396  ls
+ 1397  cd --
+ 1398  cd workspace/python_workspace/
+ 1399  ls
+ 1400  cd playbox/
+ 1401  ls
+ 1402  ls
+ 1403  vim enumerate.py
+ 1404  vim decorators.py
+ 1405  mv decorators.py my_decorator.py
+ 1406  vim decorator_test.py
+ 1407  vim time_decorator.py
+ 1408  vim ~/.bashrc
+ 1409  cd workspace/
+ 1410  ls
+ 1411  cd team-thrive/
+ 1412  vim ~/.bashrc
+ 1413  vim ~/.bashrc
+ 1414  gwaihir
+ 1415  rvm get stable --auto-dotfiles
+ 1416  bundle config git.allow_inse
+ 1417  git pull
+ 1418  . ~/.bashrc
+ 1419  ls
+ 1420  lal
+ 1421  grep -nr ruby
+ 1422  grep -nr "ruby"
+ 1423  . ~/.bashrc
+ 1424  grep -nr "ruby"
+ 1425  unalias grep
+ 1426  grep -nr "ruby"
+ 1427  grep -nr . "ruby"
+ 1428  grep -nr "ruby" .
+ 1429  grep -nr "ruby" .
+ 1430  . ~/.bashrc
+ 1431  grep -nr "ruby" .
+ 1432  rails s
+ 1433  bundle install
+ 1434  ruby -v
+ 1435  rvm
+ 1436  rvm use ruby-2.3.1
+ 1437  bundle install
+ 1438  gem install bundler
+ 1439  bundle install
+ 1440  rails s
+ 1441  rails s
+ 1442  rails s
+ 1443  rails s
+ 1444  rails s
+ 1445  gwaihir
+ 1446  heron
+ 1447  vim ~/.vimrc
+ 1448  vim ~/.vimrc
+ 1449  vim ~/.pylintrc 
+ 1450  cd dotfiles
+ 1451  cd 
+ 1452  cd dotfiles
+ 1453  ls
+ 1454  git status
+ 1455  git add vimrc
+ 1456  git commit -m "Configure syntastic checkers"
+ 1457  git push
+ 1458  vim ~/.vimrc
+ 1459  cd ..
+ 1460  cd graph/
+ 1461  vim test_graph.py 
+ 1462  ls -G
+ 1463  ls --color="auto"
+ 1464  vim ~/.aliases
+ 1465  vim ~/.bashrc
+ 1466  ls
+ 1467  lal
+ 1468  . ~/.bashrc
+ 1469  lal
+ 1470  ls
+ 1471  vim ~/.bashrc
+ 1472  . ~/.bashrc
+ 1473  lal
+ 1474  ls
+ 1475  vim ~/.bashrc
+ 1476  vim ~/.aliases
+ 1477  vim ~/.bash_aliases
+ 1478  vim ~/.bash_aliases
+ 1479  vim ~/.bashrc
+ 1480  . ~/.bashrc
+ 1481  lal
+ 1482  cd ~/dotfiles
+ 1483  ls
+ 1484  lal
+ 1485  git status
+ 1486  ./makesymlinks.sh 
+ 1487  ls
+ 1488  ./bashrc
+ 1489  . ~/.bashrc
+ 1490  lal
+ 1491  dt
+ 1492  cd ~/dotfiles
+ 1493  lal
+ 1494  git status
+ 1495  ls vim
+ 1496  rm vim/vim
+ 1497  git status
+ 1498  git commit -am "Fix ls alias stuff"
+ 1499  git push
+ 1500  swat
+ 1501  dt
+ 1502  cd school/databases/
+ 1503  ls
+ 1504  open Raghu\ Ramakrishnan\,\ Johannes\ Gehrke\ Database\ Management\ Systems.pdf 
+ 1505  cd notes
+ 1506  ls
+ 1507  vim 9.txt 
+ 1508  dt
+ 1509  cd school/
+ 1510  ls
+ 1511  cd databases/
+ 1512  ls
+ 1513  open Raghu\ Ramakrishnan\,\ Johannes\ Gehrke\ Database\ Management\ Systems.pdf 
+ 1514  ls
+ 1515  cd notes
+ 1516  ls
+ 1517  vim 9.txt 
+ 1518  vim 8.txt 
+ 1519  vim 9.txt 
+ 1520  dt
+ 1521  ls
+ 1522  sqlite3 Chinook_Sqlite.sqlite 
+ 1523  pip install flask
+ 1524  mkdir static
+ 1525  mkdir templates
+ 1526  ls
+ 1527  git init
+ 1528  vim calc.py
+ 1529  export FLASK_APP = gpa_calc
+ 1530  export FLASK_APP=gpa_calc
+ 1531  export FLASK_DEBUG=1
+ 1532  flask run
+ 1533  ls
+ 1534  vim gpa_calc.py 
+ 1535  vim gpa_calc.py 
+ 1536  python gpa_calc.py 
+ 1537  ls
+ 1538  python helpers.py 
+ 1539  export PYTHONPATH=${PYTHONPATH}:~/workspace/gpa_calc/
+ 1540  export FLASK_APP=gpa_calc
+ 1541  export FLASK_DEBUG=1
+ 1542  flask run
+ 1543  flask run
+ 1544  heron
+ 1545  ls
+ 1546  flask run
+ 1547  flask run
+ 1548  history > temp.txt

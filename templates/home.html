@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+  <p id="notice">{{ notice }}</p>
+  <form action="{{ url_for('home') }}" method="post" class="calc-gpa">
+    <dl>
+      <dd>Grades:
+      <dd><textarea name="grades" rows="30" cols="80"></textarea>
+      <dd><input type="submit" value="Submit">
+    </dl>
+  </form>
+{% endblock %}
