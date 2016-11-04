@@ -5,7 +5,6 @@ from helpers import parse_grades, calculate_gpa
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-# app.config.from_envvar('GPA_CALC_SETTINGS', silent=True)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
