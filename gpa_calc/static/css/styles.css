@@ -8,12 +8,12 @@ html {
 
 body {
   background-color: #bcccdc;
-  height: 100%;
+  min-height: 100%;
 }
 
 .content {
   background-color: white;
-  height: 100%;
+  min-height: 100%;
   max-width: 800px;
 }
 
@@ -32,3 +32,6 @@ textarea {
   max-width: 100%;
 }
 
+span.gpa {
+  font-weight: bold;
+}

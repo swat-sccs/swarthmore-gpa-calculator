@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
-  <p>Your GPA is {{ gpa | round(2) }}</p>
+  <p>Your GPA is <span class="gpa">{{ gpa | round(2) }}</span></p>
   
   <h3>Grades</h3>
   <table class="table table-bordered">
