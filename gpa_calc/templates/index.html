@@ -11,7 +11,13 @@
     </li>
     <li>Click "Calculate GPA".</li>
   </ol>
-  <p id="notice">{{ notice }}</p>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <p id="notice">
+        {{ messages[0] }}
+      </p>
+    {% endif %}
+  {% endwith %}
   <p id="gpa">{{ gpa }}</p>
   <form action="{{ url_for('gpa') }}" method="post" class="calc-gpa">
     <dl>

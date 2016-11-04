@@ -1,16 +1,24 @@
 from getpass import getpass
 import requests
 
+
 def parse_grades(raw_grades):
     """Convert from a string of grades to a structured dict.
 
     Args:
-        raw_grades
-    Returns
+        raw_grades: A string containing the user's raw grades copied and pasted
+            from MySwarthmore (hopefully)
+    Returns:
+        A list of dicts, one per course found while parsing raw_grades, with
+        the fields:
+        ['course', 'title', 'credits', 'grade', 'division', 'instructor']
     """
-    # Split raw data up by line, and filter out column label lines
+    # Split raw_grades up by line, remove column header lines and blank lines
     lines = raw_grades.split("\n")
-    is_course_line = lambda l: not (l.startswith("Term") or l.startswith("Course"))
+    def is_course_line(line): 
+
+        return line.strip() and \
+               not(line.startswith("Term") or line.startswith("Course"))
     courses = list(filter(is_course_line, lines))
 
     # Convert each course row to a dict
@@ -24,39 +32,50 @@ def parse_grades(raw_grades):
                          'division', 
                          'instructor'
                         ]
-        course_dict = dict(zip(course_fields, course_info))
-        course_list.append(course_dict)
+        if len(course_info) == len(course_fields):
+            course_dict = dict(zip(course_fields, course_info))
+            course_list.append(course_dict)
 
     return course_list
 
 
 def calculate_gpa(course_list):
-    """Given a list of course dicts, calculate the GPA."""
-    gpa_equivs = {'A+': 4.0,
-                  'A' : 4.0,
-                  'A-': 3.67,
-                  'B+': 3.33,
-                  'B' : 3.0,
-                  'B-': 2.67,
-                  'C+': 2.33,
-                  'C' : 2.0,
-                  'C-': 1.67,
-                  'D+': 1.33,
-                  'D' : 1.0,
-                  'D-': 0.67,
-                  'F' : 0.0}
+    """Given a list of course dicts, calculate the GPA.
+    
+    Args:
+        course_list: A list of dicts, each corresponding to a course with fields
+            ['course', 'title', 'credits', 'grade', 'division', 'instructor']
+
+    Returns:
+        A float representing the user's GPA, calculated from the inputted list
+        of courses.
+    """
+    grade_point_equivs = {'A+': 4.0,
+                          'A' : 4.0,
+                          'A-': 3.67,
+                          'B+': 3.33,
+                          'B' : 3.0,
+                          'B-': 2.67,
+                          'C+': 2.33,
+                          'C' : 2.0,
+                          'C-': 1.67,
+                          'D+': 1.33,
+                          'D' : 1.0,
+                          'D-': 0.67,
+                          'F' : 0.0
+                         }
     total_credits = 0
-    equiv_sum = 0
+    total_grade_points = 0
 
     for course in course_list:
         credits = float(course['credits'])
         try:
-            equiv_sum += credits * gpa_equivs[course['grade']]
+            total_grade_points += credits * grade_point_equivs[course['grade']]
         except KeyError: # Skip if it's an invalid grade (e.g., CR/NR, W, 1)
             continue
         total_credits += credits
 
-    return equiv_sum / total_credits
+    return total_grade_points / total_credits
 
 
 # def scrape_courses():
