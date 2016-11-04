@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+  Steps:
+  <ol>
+    <li>Go to <a href="https://myswat.swarthmore.edu/">MySwarthmore</a> and
+      login using your Swarthmore username and password.</li>
+    <li>Go to "Student Main Menu" &gt; "Student Records" &gt; "Grades at a 
+      Glance".</li>
+    <li>Copy the entirety of your "Unofficial Grade Report" and paste it into
+      the input field below. The calculator will do all of the parsing for you.
+    </li>
+    <li>Click "Calculate GPA".</li>
+  </ol>
+  <p id="notice">{{ notice }}</p>
+  <p id="gpa">{{ gpa }}</p>
+  <form action="{{ url_for('gpa') }}" method="post" class="calc-gpa">
+    <dl>
+      <dd><textarea name="grades" rows="10"></textarea>
+      <dd><input type="submit" value="Calculate GPA">
+    </dl>
+  </form>
+{% endblock %}

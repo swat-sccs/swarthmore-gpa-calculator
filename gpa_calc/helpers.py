@@ -59,21 +59,21 @@ def calculate_gpa(course_list):
     return equiv_sum / total_credits
 
 
-def scrape_courses():
-    url = 'https://myswat.swarthmore.edu/pls/twbkwbis.P_ValLogin'
-    username = input("Username: ")
-    password = getpass("Password: ")
-    payload = {
-        'PIN': password,
-        'sid': username
-    }
-    with requests.session() as s:
-        r = s.post(url, data=payload)
-        r = s.get('https://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME+/')
-        print(r.text)
-        print(r.headers)
-        r.raise_for_status()
+# def scrape_courses():
+    # url = 'https://myswat.swarthmore.edu/pls/twbkwbis.P_ValLogin'
+    # username = input("Username: ")
+    # password = getpass("Password: ")
+    # payload = {
+        # 'PIN': password,
+        # 'sid': username
+    # }
+    # with requests.session() as s:
+        # r = s.post(url, data=payload)
+        # r = s.get('https://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME+/')
+        # print(r.text)
+        # print(r.headers)
+        # r.raise_for_status()
 
 
-scrape_courses()
+# # scrape_courses()
 

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+  <p>Your GPA is {{ gpa | round(2) }}</p>
+  
+  <h3>Grades</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Title</th>
+        <th>Credits</th>
+        <th>Grade</th>
+        <th>Division</th>
+        <th>Instructor</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr>
+        <td>{{ course['course'] }}</td>
+        <td>{{ course['titile'] }}</td>
+        <td>{{ course['credits'] }}</td>
+        <td>{{ course['grade'] }}</td>
+        <td>{{ course['division'] }}</td>
+        <td>{{ course['instructor'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
