@@ -24,7 +24,7 @@ def gpa():
 
         gpa_integral = construct_integral(gpa)
 
-        return render_template('gpa.html', gpa=gpa, gpa_integral=gpa_integral, \
+        return render_template('gpa.html', gpa_integral=gpa_integral, \
                                courses=grades)
-    else:
+    else: # Tried to get GPA page
         return redirect(url_for('index'))

@@ -1,10 +1,33 @@
 {% extends "base.html" %}
 {% block body %}
-<p>Your GPA is {{ gpa }}</p>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
-  <p>$${{ gpa_integral }}$$</q>
+  <p>Your GPA is: <span class="latex">$${{ gpa_integral }}$$</span></p>
+
+  <p id="show-help">
+    <a id="show-help"><span class="glyphicon glyphicon-question-sign"></span></a>
+  </p>
+  <div id="help">
+    <p>
+      Don't know what this means? 
+      <a target="_blank" href="http://mathworld.wolfram.com/DefiniteIntegral.html">
+        Learn about definite integrals.
+      </a>
+    </p>
+    <p>
+      ...Or if you're really feeling lazy, the 
+      <a target="_blank" href="https://www.wolframalpha.com/">WolframAlpha</a>
+      calculator is your friend.
+    </p>
+    <p><span class="bold">Disclaimer:</span> This website is not endorsed by the 
+      Swarthmore College administration, and the value of this integral
+      represents only an unofficial GPA (with a margin of error of roughly
+      &plusmn;0.01), based on the 
+      <a href="http://www.swarthmore.edu/registrar/gpa">grade point
+      equivalencies</a> listed by the Registrar's Office.
+    </p>
+  </div>
   
   <h3>Grades</h3>
   <table class="table table-bordered">
@@ -31,4 +54,5 @@
       {% endfor %}
     </tbody>
   </table>
+  <script src="{{ url_for('static', filename='js/showHelp.js') }}"></script>
 {% endblock %}

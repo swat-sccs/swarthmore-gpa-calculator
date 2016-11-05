@@ -105,21 +105,22 @@ def construct_integral(gpa):
     x = Symbol('x', real=True)
     poly = a * x**4 + b * x**3 + c * x**2 + d * x
     lo = min(solve(poly, x)) - round(random(), 3)
-    up = round(max(solve(poly - poly.subs(x, lo) - gpa, x)), 3)
+    up = max(solve(poly - poly.subs(x, lo) - gpa, x))
 
-    def int2sum_part(n):
-        """
-        Return a string of the form "+ n" if n is positive, "- n" if n is
-        negative, or an empty string if n is 0 (for use in LaTeX formatting).
-        """
-        if n == 0:
-            return ""
-        operation = "- {}" if n < 0 else "+ {}"
-        return operation.format(str(abs(int(n))))
-
-    return "\int_{" + str(lo) + "}^{" + str(up) + "}" + "(" + \
+    return "\int_{" + ("%.3f" % lo) + "}^{" + ("%.3f" % up) + "}" + "(" + \
            str(int(a * 4)) + "x^3 " + int2sum_part(b * 3) + "x^2 " + \
            int2sum_part(c*2) + "x" + int2sum_part(d) + ") dx"
+
+
+def int2sum_part(x):
+    """
+    Return a string of the form "+ x" if x is positive, "- x" if n is
+    negative, or an empty string if x is 0 (for use in LaTeX formatting).
+    """
+    if x == 0:
+        return ""
+    operation = "- {}" if x < 0 else "+ {}"
+    return operation.format(str(abs(int(x))))
 
 
 # def scrape_courses():

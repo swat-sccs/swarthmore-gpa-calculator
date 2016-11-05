@@ -32,6 +32,10 @@ textarea {
   max-width: 100%;
 }
 
-span.gpa {
+#help {
+  display: none;
+}
+
+.bold {
   font-weight: bold;
 }
