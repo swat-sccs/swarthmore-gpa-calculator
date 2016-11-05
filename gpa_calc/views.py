@@ -18,4 +18,7 @@ def gpa():
             flash("Invalid grade input")
             return redirect(url_for('index'))
 
-        return render_template('gpa.html', gpa=gpa, courses=grades)
+        gpa_integral = construct_integral(gpa)
+        return render_template('gpa.html', gpa=gpa, intg=gpa_integral, courses=grades)
+    else:
+        return redirect(url_for('index'))

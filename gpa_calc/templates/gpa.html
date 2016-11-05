@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block body %}
-  <p>Your GPA is <span class="gpa">{{ gpa | round(2) }}</span></p>
+<p>Your GPA is {{ gpa }}</p>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <p>$$\int_{ {{ intg.lo }} }^{ {{ intg.up | round(2) }} } ({{ intg.a }}x^2 + {{ intg.b }}x + {{ intg.c }}) dx$$</p>
   
   <h3>Grades</h3>
   <table class="table table-bordered">

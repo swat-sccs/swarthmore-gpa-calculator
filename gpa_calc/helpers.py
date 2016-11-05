@@ -1,6 +1,9 @@
 from getpass import getpass
 import requests
-
+from random import randint
+from sympy import Symbol, diff, Integral, Subs
+from sympy.solvers import solve
+from sympy.functions import re
 
 def parse_grades(raw_grades):
     """Convert from a string of grades to a structured dict.
@@ -77,6 +80,30 @@ def calculate_gpa(course_list):
 
     return total_grade_points / total_credits
 
+
+def construct_integral(gpa):
+    """Constructs a definite integral which evaluates to the inputted GPA.
+    
+    Args:
+        gpa: The GPA value for which to construct an integral.
+    Returns:
+        A dict containing the relevant information about the integral
+    """
+    # TODO: desccribe returned dict in docstring
+    a = randint(2, 9)
+    b = randint(2, 9)
+    c = (b**2) // (4 * a) - 5
+
+    x = Symbol('x')
+    poly = a * x**3 + b * x**2 + c * x
+    up = max([re(n) for n in solve(poly - gpa, x)]) # Solution
+
+    return {'a': 3*a,
+            'b': 2*b,
+            'c': c,
+            'lo': 0,
+            'up': up}
+    
 
 # def scrape_courses():
     # url = 'https://myswat.swarthmore.edu/pls/twbkwbis.P_ValLogin'

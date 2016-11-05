@@ -21,8 +21,9 @@
   <p id="gpa">{{ gpa }}</p>
   <form action="{{ url_for('gpa') }}" method="post" class="calc-gpa">
     <dl>
-      <dd><textarea name="grades" rows="10"></textarea>
+      <dd><textarea id="grade-input" name="grades" rows="10"></textarea>
       <dd><input type="submit" value="Calculate GPA">
     </dl>
+    <button onclick="sampleFill()">Fill with Sample</button>
   </form>
 {% endblock %}
