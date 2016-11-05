@@ -4,7 +4,7 @@
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
   </script>
-  <p>$$\int_{ {{ intg.lo }} }^{ {{ intg.up | round(2) }} } ({{ intg.a }}x^2 + {{ intg.b }}x + {{ intg.c }}) dx$$</p>
+  <p>$${{ gpa_integral }}$$</q>
   
   <h3>Grades</h3>
   <table class="table table-bordered">
@@ -22,7 +22,7 @@
       {% for course in courses %}
       <tr>
         <td>{{ course['course'] }}</td>
-        <td>{{ course['titile'] }}</td>
+        <td>{{ course['title'] }}</td>
         <td>{{ course['credits'] }}</td>
         <td>{{ course['grade'] }}</td>
         <td>{{ course['division'] }}</td>

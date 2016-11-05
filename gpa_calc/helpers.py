@@ -1,7 +1,7 @@
 from getpass import getpass
 import requests
-from random import randint
-from sympy import Symbol, diff, Integral, Subs
+from random import choice, random
+from sympy import Symbol, Subs
 from sympy.solvers import solve
 from sympy.functions import re
 
@@ -83,27 +83,44 @@ def calculate_gpa(course_list):
 
 def construct_integral(gpa):
     """Constructs a definite integral which evaluates to the inputted GPA.
+
+    Randomly chooses a and b values for a polynomial (poly) of the form
+    ax^3 + bx^2 + cx, then chooses c based on a and b to ensure real solutions.
+    Then calculates the upper bound of the definite integral of the derivative
+    of poly with lower bound 0 such that the result is equal to gpa, and returns 
+    the integral as a string in LaTeX format.
     
     Args:
         gpa: The GPA value for which to construct an integral.
     Returns:
-        A dict containing the relevant information about the integral
+        A LaTeX-formatting string containing the integral.
     """
-    # TODO: desccribe returned dict in docstring
-    a = randint(2, 9)
-    b = randint(2, 9)
-    c = (b**2) // (4 * a) - 5
+    coeff_range = range(2, 10)
+    offset_range = range(-5, 6)
+    a = choice(coeff_range) / 4
+    b = choice(coeff_range) / 3
+    c = choice(coeff_range) / 2
+    d = choice(offset_range)
 
-    x = Symbol('x')
-    poly = a * x**3 + b * x**2 + c * x
-    up = max([re(n) for n in solve(poly - gpa, x)]) # Solution
+    x = Symbol('x', real=True)
+    poly = a * x**4 + b * x**3 + c * x**2 + d * x
+    lo = min(solve(poly, x)) - round(random(), 3)
+    up = round(max(solve(poly - poly.subs(x, lo) - gpa, x)), 3)
 
-    return {'a': 3*a,
-            'b': 2*b,
-            'c': c,
-            'lo': 0,
-            'up': up}
-    
+    def int2sum_part(n):
+        """
+        Return a string of the form "+ n" if n is positive, "- n" if n is
+        negative, or an empty string if n is 0 (for use in LaTeX formatting).
+        """
+        if n == 0:
+            return ""
+        operation = "- {}" if n < 0 else "+ {}"
+        return operation.format(str(abs(int(n))))
+
+    return "\int_{" + str(lo) + "}^{" + str(up) + "}" + "(" + \
+           str(int(a * 4)) + "x^3 " + int2sum_part(b * 3) + "x^2 " + \
+           int2sum_part(c*2) + "x" + int2sum_part(d) + ") dx"
+
 
 # def scrape_courses():
     # url = 'https://myswat.swarthmore.edu/pls/twbkwbis.P_ValLogin'
