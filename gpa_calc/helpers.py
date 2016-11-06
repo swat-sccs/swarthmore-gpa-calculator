@@ -109,7 +109,7 @@ def construct_integral(gpa):
 
     return "\int_{" + ("%.3f" % lo) + "}^{" + ("%.3f" % up) + "}" + "(" + \
            str(int(a * 4)) + "x^3 " + int2sum_part(b * 3) + "x^2 " + \
-           int2sum_part(c*2) + "x" + int2sum_part(d) + ") dx"
+           int2sum_part(c*2) + "x" + int2sum_part(d) + ")\,dx"
 
 
 def int2sum_part(x):

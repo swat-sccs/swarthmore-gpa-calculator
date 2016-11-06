@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block body %}
   <script type="text/x-mathjax-config" src="{{ url_for('static', filename='js/mathjaxConfig.js') }}"></script>
-  <script type="text/javascript">
+  <script type="text/x-mathjax-config">
     MathJax.Hub.Queue(function() {
-      document.getElementById("gpa").style.visibility = "";
+      document.getElementById("gpa").style.display = "inline";
     });
   </script>
+    <p>Your GPA is:</p>
+    <div id="gpa-container">
+      <span id="gpa">$${{ gpa_integral }}$$<p>
+    </div>
 
-  <p id="gpa">Your GPA is: $${{ gpa_integral }}$$</p>
-
-  <p id="show-help">
-    <a id="show-help"><span class="glyphicon glyphicon-question-sign"></span></a>
-  </p>
+  <a id="show-help"><span class="glyphicon glyphicon-question-sign"></span></a>
   <div id="help">
     <p>
       Don't know what this means? 
@@ -58,5 +58,6 @@
       {% endfor %}
     </tbody>
   </table>
+
   <script src="{{ url_for('static', filename='js/showHelp.js') }}"></script>
 {% endblock %}

@@ -51,8 +51,13 @@ textarea {
   outline: none;
 }
 
+#gpa-container {
+  height: 70px;
+}
+
 #gpa {
-  visibility: hidden;
+  display: none;
+  margin: 0px;
 }
 
 #help {
