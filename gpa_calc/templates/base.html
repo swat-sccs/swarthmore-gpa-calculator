@@ -4,12 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <title>Swarthmore GPA Calculator</title>
-  <link rel="shortcut icon" type="image/lng" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+  <link rel="shortcut icon" type="image/lng" href="{{ url_for('static', filename='images/favicon.png') }}"/>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
   <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <script type="text/javascript"
     src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="{{ url_for('static', filename='js/mathjaxConfig.js') }}">
+    MathJax.Hub.Config({
+      messageStyle: "none",
+      styles: {"#MathJax_Message": {display: "none !important"}},
+      config: ["{{ url_for('static', filename='js/mathjaxConfig.js') }}"]
+    });
   </script>
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
