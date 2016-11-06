@@ -13,11 +13,22 @@
   <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </head>
+
 <body>
-  <div class="container content">
-    <a href="/">
-      <h1>Swarthmore College GPA Calculator</h1>
-    </a>
+  <nav id="header-nav" class="navbar navbar-default">
+    <div class="container container-bounded">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="https://www.sccs.swarthmore.edu/">
+          <img id="logo" src="{{ url_for('static', filename='images/sccs-logo.png') }} "></img>
+        </a>
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <p class="brand-name">GPA Calculator</p>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="container container-bounded">
+    <h1>Swarthmore College GPA Calculator</h1>
     {% block body %}{% endblock %}
   </div>
 </body>

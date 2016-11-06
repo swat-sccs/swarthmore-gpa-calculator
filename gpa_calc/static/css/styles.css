@@ -7,21 +7,36 @@ html {
 }
 
 body {
-  background-color: #bcccdc;
   min-height: 100%;
 }
 
-.content {
-  background-color: white;
-  min-height: 100%;
+.container-bounded {
   max-width: 800px;
+  position: relative;
 }
 
-a h1 {
-  color: black;
-  text-decoration: none;
+#header-nav {
+  border-radius: 0;
+  border: none;
+  border-bottom: solid #dddddd 1px;
+  text-shadow: none;
+  background-color: #31425f;
 }
 
+#logo {
+  position: absolute;
+  max-height: 40%;
+}
+
+.brand-name {
+  position: absolute;
+  left: 50px;
+  color: #fafafa;
+}
+
+h1 {
+  color: #31425f;
+}
 
 #notice {
   color: #ff0000;
