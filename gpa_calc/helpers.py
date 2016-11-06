@@ -107,18 +107,10 @@ def construct_integral(gpa):
     lo = min(solve(poly, x)) - round(random(), 3)
     up = max(solve(poly - poly.subs(x, lo) - gpa, x))
 
-    dic = {'lo': round(lo, 3),
-            'up': round(up, 3),
-            'a': int(a * 4),
-            'b': int(a * 3),
-            'c': int(c * 2),
-            'd': int(d)}
-    print(dic)
-
     return {'lo': round(lo, 3),
             'up': round(up, 3),
             'a': int(a * 4),
-            'b': int(a * 3),
+            'b': int(b * 3),
             'c': int(c * 2),
             'd': int(d)}
 
