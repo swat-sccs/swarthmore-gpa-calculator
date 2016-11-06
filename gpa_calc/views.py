@@ -22,9 +22,13 @@ def gpa():
             flash("Invalid grade input") # Message appears on homepage
             return redirect(url_for('index'))
 
-        gpa_integral = construct_integral(gpa)
+        gpa_integral_dict = construct_integral(gpa)
+        latex_gpa_integral = integral_dict2latex(gpa_integral_dict)
+        wa_query = integral_dict2wolfram_alpha_query(gpa_integral_dict)
 
-        return render_template('gpa.html', gpa_integral=gpa_integral, \
+        return render_template('gpa.html', 
+                               latex_gpa_integral=latex_gpa_integral, \
+                               wa_query=wa_query,
                                courses=grades)
     else: # Tried to get GPA page
         return redirect(url_for('index'))

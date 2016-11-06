@@ -88,12 +88,12 @@ def construct_integral(gpa):
     ax^3 + bx^2 + cx, then chooses c based on a and b to ensure real solutions.
     Then calculates the upper bound of the definite integral of the derivative
     of poly with lower bound 0 such that the result is equal to gpa, and returns 
-    the integral as a string in LaTeX format.
+    the integral as dict.
     
     Args:
         gpa: The GPA value for which to construct an integral.
     Returns:
-        A LaTeX-formatting string containing the integral.
+        A dict containg the bounds and coefficients of the integral.
     """
     coeff_range = range(2, 10)
     offset_range = range(-5, 6)
@@ -107,9 +107,36 @@ def construct_integral(gpa):
     lo = min(solve(poly, x)) - round(random(), 3)
     up = max(solve(poly - poly.subs(x, lo) - gpa, x))
 
-    return "\int_{" + ("%.3f" % lo) + "}^{" + ("%.3f" % up) + "}" + "(" + \
-           str(int(a * 4)) + "x^3 " + int2sum_part(b * 3) + "x^2 " + \
-           int2sum_part(c*2) + "x" + int2sum_part(d) + ")\,dx"
+    dic = {'lo': round(lo, 3),
+            'up': round(up, 3),
+            'a': int(a * 4),
+            'b': int(a * 3),
+            'c': int(c * 2),
+            'd': int(d)}
+    print(dic)
+
+    return {'lo': round(lo, 3),
+            'up': round(up, 3),
+            'a': int(a * 4),
+            'b': int(a * 3),
+            'c': int(c * 2),
+            'd': int(d)}
+
+
+def integral_dict2latex(intg_dict):
+    """Ugly mess of a conversion from integral dict to latex format."""
+    return "\int_{" + ("%.3f" % intg_dict['lo']) + "}^{" + \
+           ("%.3f" % intg_dict['up']) + "}" + "(" + \
+           str(intg_dict['a']) + "x^3 " + int2sum_part(intg_dict['b']) + \
+           "x^2 " + int2sum_part(intg_dict['c']) + "x" + \
+           int2sum_part(intg_dict['d']) + ")\,dx"
+
+
+def integral_dict2wolfram_alpha_query(intg_dict):
+    return ('integrate+{a}x%5E3+%2B+{b}x%5E2+%2B+{c}x+%2B+{d}+from+' + \
+           '{lo}+to+{up}').format(a=intg_dict['a'], b=intg_dict['b'], \
+                                 c=intg_dict['c'], d=intg_dict['d'], \
+                                 lo=intg_dict['lo'], up=intg_dict['up'])
 
 
 def int2sum_part(x):
@@ -123,21 +150,21 @@ def int2sum_part(x):
     return operation.format(str(abs(int(x))))
 
 
-# def scrape_courses():
-    # url = 'https://myswat.swarthmore.edu/pls/twbkwbis.P_ValLogin'
-    # username = input("Username: ")
-    # password = getpass("Password: ")
-    # payload = {
-        # 'PIN': password,
-        # 'sid': username
-    # }
-    # with requests.session() as s:
-        # r = s.post(url, data=payload)
+def scrape_courses():
+    url = 'https://myswat.swarthmore.edu/pls/twbkwbis.P_ValLogin'
+    username = input("Username: ")
+    password = getpass("Password: ")
+    payload = {
+        'sid': username,
+        'PIN': password
+    }
+    with requests.session() as s:
+        r = s.post(url, data=payload)
         # r = s.get('https://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME+/')
-        # print(r.text)
-        # print(r.headers)
-        # r.raise_for_status()
+        print(r.text)
+        print(r.headers)
+        r.raise_for_status()
 
 
-# # scrape_courses()
+# scrape_courses()
 
