@@ -1,9 +1,8 @@
-from getpass import getpass
-import requests
 from random import choice, random
 from sympy import Symbol, Subs
 from sympy.solvers import solve
 from sympy.functions import re
+import re
 
 def parse_grades(raw_grades):
     """Convert from a string of grades to a structured dict.
@@ -16,10 +15,16 @@ def parse_grades(raw_grades):
         the fields:
         ['course', 'title', 'credits', 'grade', 'division', 'instructor']
     """
-    # Split raw_grades up by line, remove column header lines and blank lines
     lines = raw_grades.split("\n")
-    def is_course_line(line): 
 
+    # Remove lines at top of page not part of grade report
+    for i in range(len(lines)):
+        if lines[i].startswith("Unofficial Grade Report"):
+            lines = lines[i + 1:]
+            break;
+
+    # Remove term header lines
+    def is_course_line(line): 
         return line.strip() and \
                not(line.startswith("Term") or line.startswith("Course"))
     courses = list(filter(is_course_line, lines))
@@ -74,11 +79,17 @@ def calculate_gpa(course_list):
         credits = float(course['credits'])
         try:
             total_grade_points += credits * grade_point_equivs[course['grade']]
-        except KeyError: # Skip if it's an invalid grade (e.g., CR/NR, W, 1)
-            continue
+        except KeyError: # Not a valid letter grade
+            if re.match(r'[0-4].[0-9]{1,2}$', course['grade']):
+                # Try treating it as a grade point float (for Bryn Mawr and
+                # Haverford classes)
+                total_grade_points += credits * float(course['grade'])
+            else:
+                continue
         total_credits += credits
 
-    return total_grade_points / total_credits
+    # Don't allow division by 0
+    return total_grade_points / total_credits if total_credits > 0 else 0
 
 
 def construct_integral(gpa):
@@ -107,8 +118,8 @@ def construct_integral(gpa):
     lo = min(solve(poly, x)) - round(random(), 3)
     up = max(solve(poly - poly.subs(x, lo) - gpa, x))
 
-    return {'lo': round(lo, 3),
-            'up': round(up, 3),
+    return {'lo': lo,
+            'up': up,
             'a': int(a * 4),
             'b': int(b * 3),
             'c': int(c * 2),
@@ -125,6 +136,10 @@ def integral_dict2latex(intg_dict):
 
 
 def integral_dict2wolfram_alpha_query(intg_dict):
+    """
+    An only slightly messy conversion from integral dict to a Wolfram Alpha
+    evaluation query.
+    """
     return ('integrate+{a}x%5E3+%2B+{b}x%5E2+%2B+{c}x+%2B+{d}+from+' + \
            '{lo}+to+{up}').format(a=intg_dict['a'], b=intg_dict['b'], \
                                  c=intg_dict['c'], d=intg_dict['d'], \
@@ -140,23 +155,4 @@ def int2sum_part(x):
         return ""
     operation = "- {}" if x < 0 else "+ {}"
     return operation.format(str(abs(int(x))))
-
-
-def scrape_courses():
-    url = 'https://myswat.swarthmore.edu/pls/twbkwbis.P_ValLogin'
-    username = input("Username: ")
-    password = getpass("Password: ")
-    payload = {
-        'sid': username,
-        'PIN': password
-    }
-    with requests.session() as s:
-        r = s.post(url, data=payload)
-        # r = s.get('https://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME://myswat.swarthmore.edu/pls/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu&msg=WELCOME+/')
-        print(r.text)
-        print(r.headers)
-        r.raise_for_status()
-
-
-# scrape_courses()
 
