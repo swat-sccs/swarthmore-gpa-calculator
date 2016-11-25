@@ -47,6 +47,27 @@ textarea {
   max-width: 100%;
 }
 
+button {
+  float: left;
+  background-color: #31425f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+button:not(:first-of-type) {
+  margin-left: 10px;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-color: #f46336;
+}
+
 *:focus .MathJax, .MathJax:focus {
   outline: none;
 }

@@ -6,8 +6,8 @@
       login using your Swarthmore username and password.</li>
     <li>Go to "Student Main Menu" &gt; "Student Records" &gt; "Grades at a 
       Glance".</li>
-    <li>Copy the entirety of your "Unofficial Grade Report" and paste it into
-      the input field below. The calculator will do all of the parsing for you.
+    <li>Copy the entirety of the page and paste it into the input field below. 
+      The calculator will do all of the parsing for you.
     </li>
     <li>Click "Calculate GPA".</li>
   </ol>
@@ -19,11 +19,10 @@
     {% endif %}
   {% endwith %}
   <p id="gpa">{{ gpa }}</p>
-  <form action="{{ url_for('gpa') }}" method="post" class="calc-gpa">
-    <dl>
-      <dd><textarea id="grade-input" name="grades" rows="10"></textarea>
-      <dd><input type="submit" value="Calculate GPA">
-    </dl>
-    <!--<button onclick="sampleFill()">Fill with Sample</button>-->
+  <form action="{{ url_for('gpa') }}" method="post" class="calc-gpa" id="grades-form">
+    <textarea id="grade-input" name="grades" rows="10"></textarea>
+    <button type="submit" form="grades-form">Calculate GPA</button>
+    <button onclick="sampleFill()">Fill with Sample</button>
   </form>
+  <script src="{{ url_for('static', filename='js/sampleFill.js') }}"></script>
 {% endblock %}

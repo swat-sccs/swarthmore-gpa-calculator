@@ -1,5 +1,5 @@
-helpButtonId = "#show-help"
-helpId = "#help"
+const helpButtonId = "#show-help"
+const helpId = "#help"
 
 $(helpButtonId).click(function() {
   $(helpId).toggle();
