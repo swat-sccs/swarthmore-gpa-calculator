@@ -18,7 +18,10 @@
       config: ["{{ url_for('static', filename='js/mathjaxConfig.js') }}"]
     });
   </script>
-
+  <script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+  
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
@@ -26,7 +29,7 @@
   <nav id="header-nav" class="navbar navbar-default">
     <div class="container container-bounded">
       <div class="navbar-header">
-        <a class="navbar-brand" href="https://www.sccs.swarthmore.edu/">
+        <a class="navbar-brand" href="http://www.sccs.swarthmore.edu/">
           <img id="logo" src="{{ url_for('static', filename='images/sccs-logo.png') }} "></img>
         </a>
         <a class="navbar-brand" href="{{ url_for('index') }}">

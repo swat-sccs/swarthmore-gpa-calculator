@@ -143,11 +143,11 @@ def construct_integral(gpa):
 
 def integral_dict2latex(intg_dict):
     """Ugly mess of a conversion from integral dict to latex format."""
-    return "\int_{" + ("%.3f" % intg_dict['lo']) + "}^{" + \
+    return "$$\int_{" + ("%.3f" % intg_dict['lo']) + "}^{" + \
            ("%.3f" % intg_dict['up']) + "}" + "(" + \
            str(intg_dict['a']) + "x^3 " + int2sum_part(intg_dict['b']) + \
            "x^2 " + int2sum_part(intg_dict['c']) + "x" + \
-           int2sum_part(intg_dict['d']) + ")\,dx"
+           int2sum_part(intg_dict['d']) + ")\,dx$$"
 
 
 def integral_dict2wolfram_alpha_query(intg_dict):
@@ -155,10 +155,11 @@ def integral_dict2wolfram_alpha_query(intg_dict):
     An only slightly messy conversion from integral dict to a Wolfram Alpha
     evaluation query.
     """
-    return ('integrate+{a}x%5E3+%2B+{b}x%5E2+%2B+{c}x+%2B+{d}+from+' + \
-           '{lo}+to+{up}').format(a=intg_dict['a'], b=intg_dict['b'],
-                                  c=intg_dict['c'], d=intg_dict['d'], \
-                                  lo=intg_dict['lo'], up=intg_dict['up'])
+    return ('https://www.wolframalpha.com/input/?i=' + \
+            'integrate+{a}x%5E3+%2B+{b}x%5E2+%2B+{c}x+%2B+{d}+from+' + \
+            '{lo}+to+{up}').format(a=intg_dict['a'], b=intg_dict['b'],
+                                   c=intg_dict['c'], d=intg_dict['d'],
+                                   lo=intg_dict['lo'], up=intg_dict['up'])
 
 
 def int2sum_part(x):

@@ -1,4 +1,8 @@
 $(function() {
+  function isEmpty(el){
+    return !$.trim(el.html())
+  }
+
   $('#recalculate-gpa').bind('click', function() {
     courses = [];
     $('#grades-table tr').each(function(i, row) {
@@ -9,7 +13,7 @@ $(function() {
       $(this).children().each(function(j, cell) {
         // Only include in list if course affects GPA and checkbox is checked
         if ($(this).attr('class') == 'affects_gpa') {
-          if (!$(this).empty() && $(this).find('input').checked) {
+          if (!isEmpty($(this)) && $(this).children().first().is(':checked')) {
             include = true;
           }
           course_data[$(this).attr('class')] = include;
@@ -19,15 +23,20 @@ $(function() {
         }
       });
       if (include) { courses.push(course_data); }
-      console.log(course_data);
     });
-    // $.getJSON($SCRIPT_ROOT + '/_recalculate_gpa', {
+    $.getJSON($SCRIPT_ROOT + '/_recalculate_gpa', 
+      {course_list: JSON.stringify(courses)}, 
+      function(data) {
+        $('#wa-query').attr('href', data.wa_query);
 
-      // a: $('input[name="a"]').val(),
-      // b: $('input[name="b"]').val()
-    // }, function(data) {
-      // $("#result").text(data.result);
-    // });
+        $('#gpa').css('display', 'none');
+        $('#gpa').html(data.latex);
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub, 'gpa']);
+        MathJax.Hub.Queue(function() {
+          $('#gpa').css('display', 'inline');
+        });
+      }
+    );
     return false;
   });
 });
