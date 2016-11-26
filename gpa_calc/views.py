@@ -2,7 +2,7 @@
 views.py
 Views for the Swat GPA calculator.
 """
-from flask import Flask, request, redirect, url_for, render_template, flash
+from flask import Flask, request, jsonify, redirect, url_for, render_template, flash
 from gpa_calc import app
 from gpa_calc.helpers import *
 
@@ -10,6 +10,11 @@ from gpa_calc.helpers import *
 def index():
     """Homepage (with grades input field, etc.)"""
     return render_template('index.html')
+
+# @app.route('/_recalculate_gpa')
+# def recalculate_gpa():
+
+
 
 @app.route('/gpa', methods=['GET', 'POST'])
 def gpa():
@@ -30,5 +35,6 @@ def gpa():
                                latex_gpa_integral=latex_gpa_integral, \
                                wa_query=wa_query,
                                courses=grades)
-    else: # Tried to get GPA page
+
+    else: # GET request for GPA page
         return redirect(url_for('index'))

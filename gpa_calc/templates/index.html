@@ -11,6 +11,7 @@
     </li>
     <li>Click "Calculate GPA".</li>
   </ol>
+  
   {% with messages = get_flashed_messages() %}
     {% if messages %}
       <p id="notice">
@@ -18,11 +19,12 @@
       </p>
     {% endif %}
   {% endwith %}
-  <p id="gpa">{{ gpa }}</p>
+
   <form action="{{ url_for('gpa') }}" method="post" class="calc-gpa" id="grades-form">
     <textarea id="grade-input" name="grades" rows="10"></textarea>
     <button type="submit" form="grades-form">Calculate GPA</button>
     <button onclick="sampleFill()">Fill with Sample</button>
   </form>
+
   <script src="{{ url_for('static', filename='js/sampleFill.js') }}"></script>
 {% endblock %}

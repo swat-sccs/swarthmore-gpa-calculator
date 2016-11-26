@@ -4,6 +4,22 @@ from sympy.solvers import solve
 from sympy.functions import re
 import re
 
+# Official grade point equivalencies from the Swarthmore College registrar
+GRADE_POINT_EQUIVS = {'A+': 4.0,
+                      'A' : 4.0,
+                      'A-': 3.67,
+                      'B+': 3.33,
+                      'B' : 3.0,
+                      'B-': 2.67,
+                      'C+': 2.33,
+                      'C' : 2.0,
+                      'C-': 1.67,
+                      'D+': 1.33,
+                      'D' : 1.0,
+                      'D-': 0.67,
+                      'F' : 0.0,
+                      }
+
 def parse_grades(raw_grades):
     """Convert from a string of grades to a structured dict.
 
@@ -12,8 +28,8 @@ def parse_grades(raw_grades):
             from MySwarthmore (hopefully)
     Returns:
         A list of dicts, one per course found while parsing raw_grades, with
-        the fields:
-        ['course', 'title', 'credits', 'grade', 'division', 'instructor']
+        the fields: ['affects_gpa', 'course', 'title', 'credits', 'grade',
+        'division', 'instructor']
     """
     lines = raw_grades.split("\n")
 
@@ -33,18 +49,37 @@ def parse_grades(raw_grades):
     course_list = []
     for course in courses:
         course_info = course.split("\t") # Split up fields of row
+        course_info.append(True) # Assume course affects GPA
         course_fields = ['course', 
                          'title', 
                          'credits', 
                          'grade', 
                          'division', 
-                         'instructor'
+                         'instructor',
+                         'affects_gpa',
                         ]
         if len(course_info) == len(course_fields):
             course_dict = dict(zip(course_fields, course_info))
+
+            if grade_point_equiv(course_dict['grade']) is None:
+                course_dict['affects_gpa'] = False
             course_list.append(course_dict)
 
     return course_list
+
+
+def grade_point_equiv(grade_str):
+    if grade_str in GRADE_POINT_EQUIVS:
+        # Grade is already in letter format
+        return GRADE_POINT_EQUIVS[grade_str]
+    elif re.match(r'[0-4].[0-9]{1,2}$', grade_str):
+        # Grade is formatted as a grade point float (for Bryn Mawr and 
+        # Haverford classes)
+        return float(grade_str)
+    else:
+        # Course grade is not in valid format (e.g., 1, CR, NC) and
+        # doesn't affect GPA
+        return None
 
 
 def calculate_gpa(course_list):
@@ -52,44 +87,23 @@ def calculate_gpa(course_list):
     
     Args:
         course_list: A list of dicts, each corresponding to a course with fields
-            ['course', 'title', 'credits', 'grade', 'division', 'instructor']
+            ['course', 'title', 'credits', 'grade', 'division', 'instructor',
+            'affects_gpa', 'gpa_equiv']
 
     Returns:
         A float representing the user's GPA, calculated from the inputted list
         of courses.
     """
-    grade_point_equivs = {'A+': 4.0,
-                          'A' : 4.0,
-                          'A-': 3.67,
-                          'B+': 3.33,
-                          'B' : 3.0,
-                          'B-': 2.67,
-                          'C+': 2.33,
-                          'C' : 2.0,
-                          'C-': 1.67,
-                          'D+': 1.33,
-                          'D' : 1.0,
-                          'D-': 0.67,
-                          'F' : 0.0
-                         }
     total_credits = 0
     total_grade_points = 0
 
     for course in course_list:
-        credits = float(course['credits'])
-        try:
-            total_grade_points += credits * grade_point_equivs[course['grade']]
-        except KeyError: # Not a valid letter grade
-            if re.match(r'[0-4].[0-9]{1,2}$', course['grade']):
-                # Try treating it as a grade point float (for Bryn Mawr and
-                # Haverford classes)
-                total_grade_points += credits * float(course['grade'])
-            else:
-                continue
-        total_credits += credits
+        if course['affects_gpa']:
+            total_grade_points += float(course['credits']) * \
+                                  grade_point_equiv(course['grade'])
+            total_credits += float(course['credits'])
 
-    # Don't allow division by 0
-    return total_grade_points / total_credits if total_credits > 0 else 0
+    return total_grade_points / total_credits
 
 
 def construct_integral(gpa):
@@ -123,7 +137,8 @@ def construct_integral(gpa):
             'a': int(a * 4),
             'b': int(b * 3),
             'c': int(c * 2),
-            'd': int(d)}
+            'd': int(d),
+            }
 
 
 def integral_dict2latex(intg_dict):
@@ -141,9 +156,9 @@ def integral_dict2wolfram_alpha_query(intg_dict):
     evaluation query.
     """
     return ('integrate+{a}x%5E3+%2B+{b}x%5E2+%2B+{c}x+%2B+{d}+from+' + \
-           '{lo}+to+{up}').format(a=intg_dict['a'], b=intg_dict['b'], \
-                                 c=intg_dict['c'], d=intg_dict['d'], \
-                                 lo=intg_dict['lo'], up=intg_dict['up'])
+           '{lo}+to+{up}').format(a=intg_dict['a'], b=intg_dict['b'],
+                                  c=intg_dict['c'], d=intg_dict['d'], \
+                                  lo=intg_dict['lo'], up=intg_dict['up'])
 
 
 def int2sum_part(x):

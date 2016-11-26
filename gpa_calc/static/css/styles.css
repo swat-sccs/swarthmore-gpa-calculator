@@ -88,3 +88,8 @@ button:hover {
 .bold {
   font-weight: bold;
 }
+
+div.button-container {
+  margin-bottom: 10px;
+}
+

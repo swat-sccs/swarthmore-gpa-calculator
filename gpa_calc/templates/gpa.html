@@ -33,10 +33,13 @@
     </p>
   </div>
   
-  <h3>Grades</h3>
-  <table class="table table-bordered">
+  <div class="button-container">
+    <button type="submit" id="recalculate-gpa">Re-calculate GPA</button>
+  </div>
+  <table id="grades-table" class="table table-bordered">
     <thead>
       <tr>
+        <th></th>
         <th>Course</th>
         <th>Title</th>
         <th>Credits</th>
@@ -47,17 +50,23 @@
     </thead>
     <tbody>
       {% for course in courses %}
-      <tr>
-        <td>{{ course['course'] }}</td>
-        <td>{{ course['title'] }}</td>
-        <td>{{ course['credits'] }}</td>
-        <td>{{ course['grade'] }}</td>
-        <td>{{ course['division'] }}</td>
-        <td>{{ course['instructor'] }}</td>
+      <tr id="{{ course['course'] }}">
+        <td class="affects_gpa">
+          {% if course['affects_gpa'] %}
+          <input type="checkbox" id="{{ course['course'] }}" checked></input>
+          {% endif %}
+        </td>
+        <td class="course">{{ course['course'] }}</td>
+        <td class="title">{{ course['title'] }}</td>
+        <td class="credits">{{ course['credits'] }}</td>
+        <td class="grade">{{ course['grade'] }}</td>
+        <td class="division">{{ course['division'] }}</td>
+        <td class="instructor">{{ course['instructor'] }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
   <script src="{{ url_for('static', filename='js/showHelp.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/recalculateGPA.js') }}"></script>
 {% endblock %}
