@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  outline: none;
 }
 
 html {
@@ -68,10 +69,6 @@ button:hover {
   background-color: #f46336;
 }
 
-*:focus .MathJax, .MathJax:focus {
-  outline: none;
-}
-
 #gpa-container {
   height: 70px;
 }
@@ -90,6 +87,6 @@ button:hover {
 }
 
 div.button-container {
-  margin-bottom: 10px;
+  padding-bottom: 20px;
 }
 
