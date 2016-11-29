@@ -122,9 +122,9 @@ def construct_integral(gpa):
     """
     coeff_range = range(2, 10)
     offset_range = range(-5, 6)
-    a = choice(coeff_range) / 4
-    b = choice(coeff_range) / 3
-    c = choice(coeff_range) / 2
+    a = choice(coeff_range) / 4.0
+    b = choice(coeff_range) / 3.0
+    c = choice(coeff_range) / 2.0
     d = choice(offset_range)
 
     x = Symbol('x', real=True)
