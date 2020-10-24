@@ -2,3 +2,8 @@
 *.pyc
 __pycache__/
 .DS_Store
+
+bin/
+include/
+lib/
+share/
