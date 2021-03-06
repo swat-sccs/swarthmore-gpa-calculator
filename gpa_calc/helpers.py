@@ -48,7 +48,7 @@ def parse_grades(raw_grades):
     # Convert each course row to a dict
     course_list = []
     for course in courses:
-        course_info = course.split("\t") # Split up fields of row
+        course_info = [field.strip() for field in course.split("\t")] # Split up fields of row
         course_info.append(True) # Assume course affects GPA
         course_fields = ['course', 
                          'title', 
