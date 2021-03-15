@@ -93,7 +93,15 @@ def calculate_gpa(course_list):
     Returns:
         A float representing the user's GPA, calculated from the inputted list
         of courses.
+
+    Throws:
+        RuntimeError if no courses in course_list or if none of the courses
+        affect GPA
     """
+
+    if not course_list:
+        raise RuntimeError("No courses found in input - did you paste properly?")
+
     total_credits = 0
     total_grade_points = 0
 
@@ -102,6 +110,9 @@ def calculate_gpa(course_list):
             total_grade_points += float(course['credits']) * \
                                   grade_point_equiv(course['grade'])
             total_credits += float(course['credits'])
+
+    if total_credits == 0:
+        raise RuntimeError("No graded courses found in input - cannot calculate GPA")
 
     return total_grade_points / total_credits
 

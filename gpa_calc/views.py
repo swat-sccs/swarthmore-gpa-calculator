@@ -18,7 +18,7 @@ def recalculate_gpa():
 
     try:
         gpa = calculate_gpa(course_list)
-    except ZeroDivisionError: # No valid courses selected TODO
+    except RuntimeError:  # No valid courses selected
         pass
         # # flash("Invalid grade input") # Message appears on homepage
         # # return redirect(url_for('index'))
@@ -36,8 +36,8 @@ def gpa():
         grades = parse_grades(request.form['grades'])
         try:
             gpa = calculate_gpa(grades)
-        except ZeroDivisionError: # No valid courses found in input
-            flash("Invalid grade input") # Message appears on homepage
+        except RuntimeError as e:  # No valid courses found in input
+            flash(str(e))  # Message appears on homepage
             return redirect(url_for('index'))
 
         gpa_integral_dict = construct_integral(gpa)
