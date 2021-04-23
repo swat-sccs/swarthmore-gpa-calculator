@@ -3,10 +3,5 @@
 __pycache__/
 .DS_Store
 
-bin/
-include/
-lib/
-share/
-
 .idea
-venv/
+.venv/
